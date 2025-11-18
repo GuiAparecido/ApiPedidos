@@ -28,3 +28,4 @@ C:\ApiPedidos\OrderSystemApi\obj\Debug\net8.0\refint\OrderSystemApi.dll
 C:\ApiPedidos\OrderSystemApi\obj\Debug\net8.0\OrderSystemApi.pdb
 C:\ApiPedidos\OrderSystemApi\obj\Debug\net8.0\OrderSystemApi.genruntimeconfig.cache
 C:\ApiPedidos\OrderSystemApi\obj\Debug\net8.0\ref\OrderSystemApi.dll
+C:\ApiPedidos\OrderSystemApi\obj\Debug\net8.0\OrderSystemApi.sourcelink.json

@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-
+import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -11,8 +9,6 @@ import { ProductsComponent } from './components/products/products.component';
 import { ClientsComponent } from './components/clients/clients.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { CreateOrderComponent } from './components/create-order/create-order.component';
-
-import { ApiService } from './services/api.service';
 
 @NgModule({
   declarations: [
@@ -26,11 +22,9 @@ import { ApiService } from './services/api.service';
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule,
-    AppRoutingModule,
-    RouterModule
+    AppRoutingModule
   ],
-  providers: [ApiService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

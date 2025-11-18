@@ -9,20 +9,40 @@ export class OrdersComponent implements OnInit {
   orders: any[] = [];
 
   constructor(private api: ApiService) {}
-  ngOnInit() { this.load(); }
 
-  load() { this.api.getOrders().subscribe(r => this.orders = r || []); }
+  ngOnInit() {
+    this.load();
+  }
+
+  load() {
+    this.api.getOrders().subscribe(
+      r => this.orders = r || [],
+      err => {
+        console.error('Erro ao carregar pedidos', err);
+        this.orders = [];
+      }
+    );
+  }
 
   pay(id: string) {
-    this.api.payOrder(id).subscribe(() => this.load(), e => alert('Erro ao pagar'));
+    this.api.payOrder(id).subscribe(
+      () => this.load(),
+      () => alert('Erro ao pagar')
+    );
   }
 
   cancel(id: string) {
-    this.api.cancelOrder(id).subscribe(() => this.load(), e => alert('Erro ao cancelar'));
+    this.api.cancelOrder(id).subscribe(
+      () => this.load(),
+      () => alert('Erro ao cancelar')
+    );
   }
 
   viewTotal(id: string) {
-    this.api.getTotal(id).subscribe(t => alert('Total: ' + t), e => alert('Erro ao buscar total'));
+    this.api.getTotal(id).subscribe(
+      t => alert('Total: ' + t),
+      () => alert('Erro ao buscar total')
+    );
   }
 
   // mapeamento de status numérico -> texto

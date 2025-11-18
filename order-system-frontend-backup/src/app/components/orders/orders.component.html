@@ -1,30 +1,46 @@
-<div class="card">
-    <div class="card-body">
-        <h5>Criar Pedido</h5>
+<div>
+    <div class="card">
+        <div class="card-body">
+            <h5>Pedidos</h5>
 
-        <div class="mb-3">
-            <label>Cliente</label>
-            <select class="form-select" [(ngModel)]="selectedClientId">
-        <option *ngFor="let c of clients" [ngValue]="c.id">{{c.nome}}</option>
-      </select>
+            <table class="table table-sm">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Cliente</th>
+                        <th>Status</th>
+                        <th>Data</th>
+                        <th>Total</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let p of orders">
+                        <td style="max-width:180px; overflow:hidden; text-overflow:ellipsis">
+                            {{ p.id }}
+                        </td>
+
+                        <!-- Cliente — mostrar nome se já vier no objeto, senão mostrar clienteId -->
+                        <td>
+                            {{ p.clienteNome || p.clienteId }}
+                        </td>
+
+                        <td>{{ statusMap[p.status] }}</td>
+
+                        <td>{{ p.data | date: 'short' }}</td>
+
+                        <td>{{ p.total }}</td>
+
+                        <td>
+                            <button class="btn btn-sm btn-success me-1" (click)="pay(p.id)">Pagar</button>
+                            <button class="btn btn-sm btn-warning me-1" (click)="cancel(p.id)">Cancelar</button>
+                            <button class="btn btn-sm btn-info" (click)="viewTotal(p.id)">Total</button>
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
         </div>
-
-        <div>
-            <label>Produtos</label>
-            <div *ngFor="let p of products; let i = index" class="d-flex align-items-center mb-2">
-                <div class="flex-grow-1">
-                    {{p.nome}} — R$ {{p.preco | number:'1.2-2'}}
-                </div>
-                <div style="width:80px">
-                    <!-- importante: bind para p.quantidade (número) e inicializar com 1 -->
-                    <input type="number" class="form-control" min="0" [(ngModel)]="p.quantidade" />
-                </div>
-                <div class="ms-2">
-                    <input type="checkbox" [(ngModel)]="p.selected" />
-                </div>
-            </div>
-        </div>
-
-        <button class="btn btn-primary mt-2" (click)="createOrder()">Criar Pedido</button>
     </div>
 </div>
