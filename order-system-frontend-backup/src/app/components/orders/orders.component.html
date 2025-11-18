@@ -1,0 +1,30 @@
+<div class="card">
+    <div class="card-body">
+        <h5>Criar Pedido</h5>
+
+        <div class="mb-3">
+            <label>Cliente</label>
+            <select class="form-select" [(ngModel)]="selectedClientId">
+        <option *ngFor="let c of clients" [ngValue]="c.id">{{c.nome}}</option>
+      </select>
+        </div>
+
+        <div>
+            <label>Produtos</label>
+            <div *ngFor="let p of products; let i = index" class="d-flex align-items-center mb-2">
+                <div class="flex-grow-1">
+                    {{p.nome}} — R$ {{p.preco | number:'1.2-2'}}
+                </div>
+                <div style="width:80px">
+                    <!-- importante: bind para p.quantidade (número) e inicializar com 1 -->
+                    <input type="number" class="form-control" min="0" [(ngModel)]="p.quantidade" />
+                </div>
+                <div class="ms-2">
+                    <input type="checkbox" [(ngModel)]="p.selected" />
+                </div>
+            </div>
+        </div>
+
+        <button class="btn btn-primary mt-2" (click)="createOrder()">Criar Pedido</button>
+    </div>
+</div>
